@@ -13,6 +13,12 @@ Autodo 是一个基于 **Playwright + Python + DeepSeek AI** 的自动刷题工�
 - 支持选择题(包括单选多选)、填空题、简答题  
 - 自动保存登录状态，下次打开无需登录  
 
+
+
+# example:
+
+<video src="assets/example.mp4" controls=""></video>
+
 ---
 
 ## 📦 功能特点
