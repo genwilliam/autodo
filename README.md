@@ -17,7 +17,10 @@ Autodo 是一个基于 **Playwright + Python + DeepSeek AI** 的自动刷题工�
 
 # example:
 
-<video src="assets/example.mp4" controls=""></video>
+[▶️ 点击查看视频](https://github.com/genwilliam/autodo/releases/download/v1.2.3/example.mp4)
+
+![示例](assets/examp.gif)
+
 
 ---
 
