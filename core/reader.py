@@ -1,5 +1,5 @@
 from playwright.sync_api import Page
-
+import re
 
 def get_question(page: Page):
     """
@@ -31,7 +31,6 @@ def get_question(page: Page):
 
     return ""
 
-import re
 
 def get_options(page):
     """
