@@ -40,3 +40,4 @@ dist/
 # login information
 config/login_state.json
 
+config/config.yaml
