@@ -31,33 +31,51 @@ def get_question(page: Page):
 
     return ""
 
+import re
 
 def get_options(page):
     """
-        通用选项提取（适用于单选/多选)
-        每个选项都是 label.option-select
-        input 类型:
-            多选 = input.el-checkbox__original
-            单选 = input.el-radio__original
+        通用选项提取（适用于单选/多选）
+        每个选项都是 label.option-select 或 div.flex-row
     """
     options = []
 
+    # 多选/单选的 label 结构
     labels = page.locator("label.option-select")
-
     for i in range(labels.count()):
         label_obj = labels.nth(i)
 
-        # A/B/C/D 获取 input 的 value="A"
+        # 获取选项字母
         input_el = label_obj.locator("input")
         option_letter = input_el.get_attribute("value").strip()
 
-        # 选项文本  在 div.qst-html p 中
-        option_text = label_obj.locator("div.qst-html p").inner_text().strip()
+        # 获取选项文本
+        ck_div = label_obj.locator("div.qst-html")
+        if ck_div.locator("p").count() > 0:
+            option_text = ck_div.locator("p").inner_text().strip()
+        else:
+            option_text = ck_div.inner_text().strip()
 
         options.append((option_letter, option_text))
 
-    return options
+    # 另一种 div.flex-row 结构
+    div_rows = page.locator("div.flex-row.align-center")
+    for i in range(div_rows.count()):
+        row = div_rows.nth(i)
+        row_text = row.inner_text().strip()
+        # 用正则匹配开头字母 + "、"
+        m = re.match(r"([A-Z])、", row_text)
+        if m:
+            letter = m.group(1)
+            # 取 ck-content 内的 <p> 或 div 文本
+            ck_div = row.locator("div.qst-html")
+            if ck_div.locator("p").count() > 0:
+                text = ck_div.locator("p").inner_text().strip()
+            else:
+                text = ck_div.inner_text().strip()
+            options.append((letter, text))
 
+    return options
 
 def get_question_type(page: Page):
     """
