@@ -1,0 +1,5 @@
+# 复制这个文件,放到当前目录下,命名为config.yaml
+# 你需要把需要的url和API key写到config.yaml
+
+url: ""
+DEEPSEEK_KEY: ""
