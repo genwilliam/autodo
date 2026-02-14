@@ -13,9 +13,9 @@ def label():
         page = context.new_page()
 
         page.goto(url)
-        print("已自动登录。")
+        print("已自动登录")
 
-        print("按 Enter 获取 <p> 标签内容，按 q 然后回车退出程序。")
+        print("按 Enter 获取 <p> 标签内容，按 q 然后回车退出程序")
 
         while True:
             key = input("\n等待操作（Enter = 获取；q = 退出）：")
